@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Data</title>
+</head>
+<style>
+    #container{
+display: grid;
+grid-template-columns: repeat(2,200px);
+}
+</style>
+
+<body>
+    <div id="container"> 
+         
+    </div>
+</body>
+<script>
+
+var gettingcart=JSON.parse(localStorage.getItem("productCartData"));
+console.log(gettingcart)
+    if(localStorage.getItem("productCatData")===null){
+        gettingcart=[];
+    }else{
+        gettingcart=JSON.parse(localStorage.getItem('productCartData',JSON.stringify()))
+    }
+
+
+    function displayCartData(){
+        document.querySelector("#container").innerText="";
+        gettingcart.forEach(function(cartItem){
+
+        var box=document.createElement("div");
+        box.style.border="solid";
+        box.style.backgroundColor="whitesmoke";
+        box.style.padding="20px";
+        var img=document.createElement("img");
+        img.src=cartItem.image_url;
+        img.style.width="100%";
+        var name=document.createElement("h5");
+        name.innerText="Name :"+cartItem.name;
+        var price=document.createElement("h6");
+        price.innerText="Price: "+cartItem.price;
+        var cartButton=document.createElement("button")
+        cartButton.innerText="REMOVE";
+        box.append(img,name,price,cartButton);
+        
+        
+        
+        document.querySelector("#container").append(box);
+            
+
+            
+           
+        });
+       
+           
+    }
+    displayCartData();
+</script>
+</html>
