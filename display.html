@@ -42,7 +42,7 @@
 
 
     <div id = "container">
-        
+
     </div>
     
 </body>
@@ -58,7 +58,7 @@
       produ = JSON.parse(localStorage.getItem("pro"));
   }
     
- var cartData=[];
+  var cartData = JSON.parse(localStorage.getItem("cartData")) || [];
 
 
  function displayData(){

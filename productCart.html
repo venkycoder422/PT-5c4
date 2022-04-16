@@ -4,60 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart Data</title>
+    <title>cart data</title>
 </head>
 <style>
-    #container{
-display: grid;
-grid-template-columns: repeat(2,200px);
-}
+       .container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        width: 80%;
+        height:auto;
+        margin: auto;
+        grid-template-rows: auto;
+    }
 </style>
-
 <body>
-    <div id="container"> 
-         
-    </div>
-</body>
-<script>
-
-var gettingcart=JSON.parse(localStorage.getItem("cartData"))||[];
-console.log(gettingcart)
-    if(localStorage.getItem("cartData")===null){
-        gettingcart=[];
-    }else{
-        gettingcart=JSON.parse(localStorage.getItem('cartData',JSON.stringify()))
-    }
-
-
-    function displayCartData(){
-        document.querySelector("#container").innerText="";
-        gettingcart.map(function(cartItem){
-
-        var box=document.createElement("div");
-        box.style.border="solid";
-        box.style.backgroundColor="whitesmoke";
-        box.style.padding="20px";
-        var img=document.createElement("img");
-        img.src=cartItem.image_url;
-        img.style.width="100%";
-        var name=document.createElement("h5");
-        name.innerText="Name :"+cartItem.name;
-        var price=document.createElement("h6");
-        price.innerText="Price: "+cartItem.price;
-        var cartButton=document.createElement("button")
-        cartButton.innerText="REMOVE";
-        box.append(img,name,price,cartButton);
-        
-        
-        
-        document.querySelector("#container").append(box);
+    <div class="container"></div>
     
-            
-           
-        });
-       
-           
-    }
-    displayCartData();
-</script>
+</body>
 </html>
+<script>
+    var cartdata = JSON.parse(localStorage.getItem("cartData"))
+
+    function displayData(){
+    //  document.querySelector("container").innerHTML = "";
+    cartdata.forEach(function(data){
+         var box = document.createElement("div");
+
+         var name = document.createElement("p");
+         name.innerText = data.name;
+
+         var rating = document.createElement("p");
+         rating.innerText = data.rating;
+
+         var img = document.createElement("img");
+         img.src = data.image_url;
+
+         var price = document.createElement("p");
+         price.innerText = data.price;
+
+         box.append(img,name,rating,price);
+         document.querySelector(".container").append(box)
+     })
+ }
+ displayData();
+</script>
