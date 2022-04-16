@@ -20,18 +20,18 @@ grid-template-columns: repeat(2,200px);
 </body>
 <script>
 
-var gettingcart=JSON.parse(localStorage.getItem("productCartData"));
+var gettingcart=JSON.parse(localStorage.getItem("cartData"))||[];
 console.log(gettingcart)
-    if(localStorage.getItem("productCatData")===null){
+    if(localStorage.getItem("cartData")===null){
         gettingcart=[];
     }else{
-        gettingcart=JSON.parse(localStorage.getItem('productCartData',JSON.stringify()))
+        gettingcart=JSON.parse(localStorage.getItem('cartData',JSON.stringify()))
     }
 
 
     function displayCartData(){
         document.querySelector("#container").innerText="";
-        gettingcart.forEach(function(cartItem){
+        gettingcart.map(function(cartItem){
 
         var box=document.createElement("div");
         box.style.border="solid";
@@ -51,8 +51,7 @@ console.log(gettingcart)
         
         
         document.querySelector("#container").append(box);
-            
-
+    
             
            
         });
